@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart'; // ✅ Import GetStorage
+import 'package:get_storage/get_storage.dart'; 
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'navigation.dart';
@@ -8,8 +10,12 @@ import 'navigation.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // ✅ Initialisation de GetStorage
+  //  Initialisation de GetStorage
   await GetStorage.init();
+  //Initialisation de Firebase
+   await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
 
   // Détermination de la route initiale
   var initialRoute = await Routes.initialRoute;
@@ -17,9 +23,9 @@ void main() async {
   runApp(Main(initialRoute));
 }
 
-// ✅ Fonction pour initialiser d'autres dépendances si nécessaire
+//  Fonction pour initialiser d'autres dépendances si nécessaire
 void initializeDependencies() {
-  // Par exemple :
+
   // Get.put(UserController()); 
   // Get.put(SettingsController());
 }
@@ -36,7 +42,7 @@ class Main extends StatelessWidget {
       getPages: Nav.routes,
       debugShowCheckedModeBanner: false,
       
-      // ✅ Localisation
+      
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -48,7 +54,7 @@ class Main extends StatelessWidget {
       ],
       locale: const Locale('fr', 'FR'),
 
-      // ✅ Thème et police
+      // Thème et police
       theme: ThemeData(
         textTheme: GoogleFonts.montserratTextTheme(
           Theme.of(context).textTheme,

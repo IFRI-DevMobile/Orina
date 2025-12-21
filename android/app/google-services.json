@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "218569797510",
+    "project_id": "orina-auth",
+    "storage_bucket": "orina-auth.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218569797510:android:96df1011a64eee11f98607",
+        "android_client_info": {
+          "package_name": "com.example.code_initial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218569797510-ib7ioe6heg5od3ld8e4c0uthqne6fftl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmxqtd7nqIeQL7nr96Bh6Q1PAhum513c8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218569797510-ib7ioe6heg5od3ld8e4c0uthqne6fftl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

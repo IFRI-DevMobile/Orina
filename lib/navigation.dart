@@ -2,6 +2,7 @@ import 'package:code_initial/presentation/pages/register/register_page.dart';
 import 'package:get/get.dart';
 import 'package:code_initial/presentation/pages/onboarding/onboarding_page.dart';
 import 'package:code_initial/presentation/pages/onboarding/onboarding_controller.dart';
+import 'package:code_initial/presentation/pages/register/password_forget_password.dart';
 
 class Nav {
   static List<GetPage> routes = [
@@ -13,7 +14,11 @@ class Nav {
       name: Routes.ONBOARDING,
       page: () => OnboardingPage(),
       binding: OnboardingBinding(),
-    )
+    ),
+    GetPage(
+     name: '/password-forget',
+     page: () => const PasswordForgetPage(),
+  ),
 
   ];
 }

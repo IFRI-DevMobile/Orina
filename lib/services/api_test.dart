@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
 import 'api_services.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+Future<void> main() async {
   final api = ApiService();
 
   // Test GET
@@ -18,7 +16,7 @@ void main() async {
   await testDelete(api);
 }
 
-// -------------------- Tests --------------------
+//  Tests 
 
 Future<void> testGet(ApiService api) async {
   try {

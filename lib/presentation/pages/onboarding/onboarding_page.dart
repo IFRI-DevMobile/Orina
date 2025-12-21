@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'package:code_initial/presentation/pages/onboarding/intro_orina.dart';
-import 'package:code_initial/presentation/pages/onboarding/onboarding_second_page.dart';
-import 'package:code_initial/presentation/pages/register/register_page.dart';
 import 'package:flutter/material.dart';
 
 
@@ -59,7 +57,7 @@ class _OnboardingPageState extends State<OnboardingPage>
 
     _controller.forward();
 
-    //  SWITCH VERS LA SECONDE PAGE APRÈS 8 SECONDES
+    //  Aller vers la page intro apres 8s
     Future.delayed(const Duration(seconds: 8), () {
       Navigator.pushReplacement(
         context,

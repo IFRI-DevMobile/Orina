@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import '../register/register_page.dart';
-// ================== COLORS ==================
+import '../register/onboarding_login_page.dart';
+
+// Couleurs
 const Color chocolate = Color(0xFFC98434);
 const Color lightGrey = Color(0xFFF2F2F2);
 
-// ================== INTRO PAGE ==================
 class IntroFlowPage extends StatefulWidget {
   const IntroFlowPage({super.key});
 
@@ -23,26 +24,18 @@ class _IntroFlowPageState extends State<IntroFlowPage> {
         "assets/images/intro5.png",
         "assets/images/intro4.png",
       ],
-      titles: [
-        "Produits de qualité",
-        "Etre fier(e) de sa peau",
-        "Rayonner de milles feux",
-      ],
-      subtitles: [
-        "Des soins conçus avec des ingrédients sûrs pour une peau saine.",
-        "Valoriser et se sentir bien dans sa peau",
-        "Briller",
-      ],
+      title: "Produits de qualité",
+      subtitle: "Des soins sûrs pour une peau éclatante",
     ),
     _IntroData(
       images: ["assets/images/gemini1.png"],
-      titles: ["Achat Facile"],
-      subtitles: ["Faites vos commandes facilement"],
+      title: "Achat facile",
+      subtitle: "Commandez en quelques clics",
     ),
     _IntroData(
       images: ["assets/images/gemini2.png"],
-      titles: ["Livraison rapide"],
-      subtitles: ["Recevez vos produits en toute sécurité et à temps."],
+      title: "Livraison rapide",
+      subtitle: "Chez vous en toute sécurité",
     ),
   ];
 
@@ -53,52 +46,81 @@ class _IntroFlowPageState extends State<IntroFlowPage> {
       body: SafeArea(
         child: Column(
           children: [
-            // LOGO
+           
             Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: Image.asset(
-                "assets/images/logo_orina.png",
-                height: 70,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              child: Row(
+                children: [
+                  const SizedBox(width: 60),
+
+                  Expanded(
+                    child: Center(
+                      child: Image.asset(
+                        "assets/images/logo_orina.png",
+                        height: 60,
+                      ),
+                    ),
+                  ),
+
+                  if (currentPage < pages.length - 1)
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const LoginPage(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        "Passer",
+                        style: TextStyle(
+                          color: chocolate,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    )
+                  else
+                    const SizedBox(width: 60),
+                ],
               ),
             ),
 
-            const SizedBox(height: 16),
-
-            // PAGEVIEW
+           
             Expanded(
               child: PageView.builder(
                 controller: _pageController,
                 itemCount: pages.length,
-                onPageChanged: (index) {
-                  setState(() => currentPage = index);
-                },
-                itemBuilder: (context, index) {
-                  return _AnimatedIntroPage(data: pages[index]);
+                onPageChanged: (i) => setState(() => currentPage = i),
+                itemBuilder: (_, i) {
+                  return _IntroPageContent(
+                    data: pages[i],
+                    isFirstPage: i == 0,
+                  );
                 },
               ),
             ),
 
-            // INDICATORS
+            
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
+              padding: const EdgeInsets.only(bottom: 12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
                   pages.length,
-                  (index) => _indicatorDot(index == currentPage),
+                  (i) => _dot(i == currentPage),
                 ),
               ),
             ),
 
-            // BUTTON
+           
             Container(
-              width: double.infinity,
-              padding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
               color: lightGrey,
+              padding: const EdgeInsets.all(16),
+              width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: chocolate,
-                  elevation: 0,
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -108,10 +130,9 @@ class _IntroFlowPageState extends State<IntroFlowPage> {
                   if (currentPage < pages.length - 1) {
                     _pageController.nextPage(
                       duration: const Duration(milliseconds: 400),
-                      curve: Curves.easeOutCubic,
+                      curve: Curves.easeOut,
                     );
                   } else {
-                    //  PAGE INSCRIPTION
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
@@ -121,9 +142,7 @@ class _IntroFlowPageState extends State<IntroFlowPage> {
                   }
                 },
                 child: Text(
-                  currentPage == pages.length - 1
-                      ? "Commencer"
-                      : "Suivant",
+                  currentPage == pages.length - 1 ? "Commencer" : "Suivant",
                   style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
@@ -137,149 +156,93 @@ class _IntroFlowPageState extends State<IntroFlowPage> {
     );
   }
 
-  Widget _indicatorDot(bool active) {
+  Widget _dot(bool active) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       margin: const EdgeInsets.symmetric(horizontal: 4),
       width: active ? 18 : 8,
       height: 8,
       decoration: BoxDecoration(
-        color: active ? chocolate : Colors.grey.shade400,
+        color: active ? chocolate : Colors.grey,
         borderRadius: BorderRadius.circular(10),
       ),
     );
   }
 }
 
-// ================== ANIMATED PAGE ==================
-class _AnimatedIntroPage extends StatefulWidget {
+class _IntroPageContent extends StatelessWidget {
   final _IntroData data;
-  const _AnimatedIntroPage({required this.data});
+  final bool isFirstPage;
 
-  @override
-  State<_AnimatedIntroPage> createState() => _AnimatedIntroPageState();
-}
-
-class _AnimatedIntroPageState extends State<_AnimatedIntroPage>
-    with TickerProviderStateMixin {
-  late final List<AnimationController> _controllers;
-  late final List<Animation<double>> _animations;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _controllers = List.generate(
-      widget.data.images.length,
-      (_) => AnimationController(
-        vsync: this,
-        duration: const Duration(milliseconds: 600),
-      ),
-    );
-
-    _animations = _controllers
-        .map(
-          (c) => CurvedAnimation(
-            parent: c,
-            curve: Curves.easeOutCubic,
-          ),
-        )
-        .toList();
-
-    _playSequential();
-  }
-
-  Future<void> _playSequential() async {
-    for (var controller in _controllers) {
-      await controller.forward();
-      await Future.delayed(const Duration(milliseconds: 250));
-    }
-  }
-
-  @override
-  void dispose() {
-    for (var c in _controllers) {
-      c.dispose();
-    }
-    super.dispose();
-  }
+  const _IntroPageContent({
+    required this.data,
+    required this.isFirstPage,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final bool isFirstPage = widget.data.images.length > 1;
-
     return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
-          children: List.generate(widget.data.images.length, (index) {
-            final double ladderOffset =
-                isFirstPage ? index * 24.0 : 0;
+          children: [
+            const SizedBox(height: 30),
 
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: AnimatedBuilder(
-                animation: _animations[index],
-                builder: (context, child) {
-                  return Transform.translate(
-                    offset: Offset(ladderOffset, 0),
-                    child: ScaleTransition(
-                      scale: _animations[index],
-                      child: FadeTransition(
-                        opacity: _animations[index],
-                        child: child,
-                      ),
-                    ),
-                  );
-                },
-                child: Column(
-                  children: [
-                    Image.asset(
-                      widget.data.images[index],
-                      height: 200,
+           //Images
+            Column(
+              children: List.generate(data.images.length, (i) {
+                return Padding(
+                  padding: EdgeInsets.only(
+                    bottom: 24,
+                    left: isFirstPage ? i * 20.0 : 0,
+                  ),
+                  child: SizedBox(
+                    height: isFirstPage ? 200 : 260,
+                    child: Image.asset(
+                      data.images[i],
                       fit: BoxFit.contain,
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      widget.data.titles[index],
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      widget.data.subtitles[index],
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        height: 1.4,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                );
+              }),
+            ),
+
+            const SizedBox(height: 20),
+
+            
+            Text(
+              data.title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
               ),
-            );
-          }),
+            ),
+
+            const SizedBox(height: 8),
+
+            Text(
+              data.subtitle,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.grey,
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-// ================== DATA MODEL ==================
 class _IntroData {
   final List<String> images;
-  final List<String> titles;
-  final List<String> subtitles;
+  final String title;
+  final String subtitle;
 
   _IntroData({
     required this.images,
-    required this.titles,
-    required this.subtitles,
+    required this.title,
+    required this.subtitle,
   });
 }
-
-
