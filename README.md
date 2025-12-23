@@ -1,26 +1,30 @@
 # Orina – Application mobile e-commerce (Flutter)
 
-## 📱 Description du projet
+##  Description du projet
 **Orina** est une application mobile e-commerce développée avec **Flutter**.  
-Elle propose une expérience utilisateur complète allant de l’onboarding jusqu’au paiement, avec une navigation fluide, une gestion des produits, et une authentification moderne intégrant **Firebase (Google & Apple)**.
+Elle propose une expérience utilisateur complète allant de l’onboarding jusqu’au paiement, avec une navigation fluide, une gestion des produits, et une authentification moderne intégrant **Firebase (Google & Apple)** ainsi qu’une **gestion locale des états de connexion**.
 
 Le projet est réalisé dans un cadre collaboratif, chaque membre de l’équipe étant responsable de modules spécifiques de l’application.
 
 ---
 
-## 🛠️ Technologies utilisées
+##  Technologies utilisées
 - **Flutter**
 - **Dart**
 - **Firebase Authentication**
   - Connexion avec Google
   - Connexion avec Apple
+- **GetX**
+- **GetStorage**
+  - Stockage local des informations de connexion
+  - Gestion de l’état utilisateur (session, persistance)
 - Git & GitHub (travail collaboratif par branches)
 
 ---
 
 ## 👥 Équipe & contributions
 
-### 👩‍💻 Iffa Symelle VIDEDANNON  
+### Iffa Symelle VIDEDANNON  
 - **Identifiants GitHub :**
   - `Symelle`
   - `videdannoniffasymelle-lang`
@@ -30,14 +34,18 @@ Le projet est réalisé dans un cadre collaboratif, chaque membre de l’équipe
 - Splash screen
 - Pages d’inscription
 - Pages de connexion
-- Intégration Firebase Authentication
+- Intégration de **Firebase Authentication**
   - Connexion avec Google
   - Connexion avec Apple
+- Utilisation de **GetStorage**
+  - Sauvegarde des informations de connexion
+  - Persistance de l’état utilisateur après authentification
+  - Gestion des données liées à la description et au suivi des connexions
 
 ---
 
 ### 👨‍💻 HOUNYE Emmanuel  
-- **Identifiant GitHub :** `emmahouny-pixel`
+- **Identifiant GitHub :** `emmahouny-pixelLui`
 
 **Contributions :**
 - Page d’accueil
@@ -46,7 +54,7 @@ Le projet est réalisé dans un cadre collaboratif, chaque membre de l’équipe
 
 ---
 
-### 👨‍💻 Morel HOUESSOU  
+###  Morel HOUESSOU  
 - **Identifiant GitHub :** `morelhouessou`
 
 **Contributions :**
@@ -59,9 +67,10 @@ Le projet est réalisé dans un cadre collaboratif, chaque membre de l’équipe
 
 ---
 
-## 📂 Fonctionnalités principales
+##  Fonctionnalités principales
 - Onboarding et splash screen
 - Authentification utilisateur (Email, Google, Apple)
+- Gestion persistante de la session utilisateur avec GetStorage
 - Navigation fluide entre les pages
 - Consultation des produits
 - Ajout au panier et gestion des commandes
@@ -73,7 +82,9 @@ Le projet est réalisé dans un cadre collaboratif, chaque membre de l’équipe
 
 ---
 
-## 🚀 Lancement du projet
+## Lien drive et Figma
+https://drive.google.com/file/d/1eON2grH2VWFl-Zq9eYd9insyVJYjKCiu/view?usp=sharing
+https://www.figma.com/proto/MGIyJSY1cipvZoRFLCzrDi/Beauty-Products-E-commerce-App--Community-?node-id=0-1&t=gprPufN9mK3hS2gX-1
 
 ### Prérequis
 - Flutter SDK installé
@@ -84,3 +95,4 @@ Le projet est réalisé dans un cadre collaboratif, chaque membre de l’équipe
 ```bash
 flutter pub get
 flutter run
+
