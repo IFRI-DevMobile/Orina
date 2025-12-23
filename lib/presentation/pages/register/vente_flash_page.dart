@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:code_initial/navigation.dart';
+import 'package:code_initial/presentation/pages/profile/profile_page.dart';
+import 'package:code_initial/wishlist_page.dart';
+import 'package:code_initial/cart_page.dart';
+import 'package:code_initial/presentation/pages/register/accueil_page.dart';
 
 const Color chocolate = Color(0xFFC98434);
 const Color background = Color(0xFFF6F6F6);
@@ -16,6 +22,41 @@ class _VenteFlashPageState extends State<VenteFlashPage> {
 
   final List<String> discounts = ["All", "10%", "20%", "30%", "40%"];
 
+  // Exemple de produits — chaque produit a un nom, un prix et une liste d'images (URLs ou assets)
+  final List<Map<String, dynamic>> products = [
+    {
+      'name': 'Soin anti-casse',
+      'price': '6 000 FCFA',
+      'discount': 40,
+      'images': [
+        'https://i.postimg.cc/N0kqYkGj/Frame_1000005976_(3).png',
+        'https://i.postimg.cc/q7shTSCX/Frame_1000006004.png',
+        'https://i.postimg.cc/fbctNp07/Frame_1000006000.png',
+      ],
+    },
+    {
+      'name': 'Produit cosmétique',
+      'price': '5 500 FCFA',
+      'discount': 20,
+      'images': [
+        'https://i.postimg.cc/q7shTSCX/Frame_1000006004.png',
+        'https://i.postimg.cc/GpF8CVsx/Frame_1000006002.png',
+      ],
+    },
+    {
+      'name': 'Beurre naturel',
+      'price': '8 000 FCFA',
+      'discount': 10,
+      'images': ['assets/images/glow.png', 'assets/images/glow1.png'],
+    },
+    {
+      'name': 'Crème hydratante',
+      'price': '7 200 FCFA',
+      'discount': 30,
+      'images': ['assets/images/glow2.png', 'assets/images/glow4.png'],
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,36 +70,47 @@ class _VenteFlashPageState extends State<VenteFlashPage> {
         onTap: (index) {
           switch (index) {
             case 0:
-              // Navigator.push(context, MaterialPageRoute(builder: (_) => AccueilPage()));
+               Navigator.push(context, MaterialPageRoute(builder: (_) => HomePage()));
               break;
             case 1:
-              // Navigator.push(context, MaterialPageRoute(builder: (_) => WishlistPage()));
+               Navigator.push(context, MaterialPageRoute(builder: (_) => WishlistPage()));
               break;
             case 2:
               break;
             case 3:
-              // Navigator.push(context, MaterialPageRoute(builder: (_) => PanierPage()));
+               Navigator.push(context, MaterialPageRoute(builder: (_) => CartPage()));
               break;
             case 4:
-              // Navigator.push(context, MaterialPageRoute(builder: (_) => ComptePage()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const ProfilePage()),
+              );
               break;
           }
         },
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Accueil"),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite_border), label: "Souhaits"),
-          BottomNavigationBarItem(icon: Icon(Icons.local_offer_outlined), label: "Offres"),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_outlined), label: "Panier"),
-          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: "Compte"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_border),
+            label: "Souhaits",
+          ),
+         
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart_outlined),
+            label: "Panier",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            label: "Compte",
+          ),
         ],
       ),
 
-      // ================= BODY =================
+      // BODY 
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-
-            // ================= HEADER (FOND BLANC) =================
+            // HEADER (FOND BLANC) 
             SliverToBoxAdapter(
               child: Container(
                 color: Colors.white,
@@ -75,10 +127,17 @@ class _VenteFlashPageState extends State<VenteFlashPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
-                          Text("Vente Flash",
-                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                          Text("Choose your discount",
-                              style: TextStyle(fontSize: 12, color: Colors.grey)),
+                          Text(
+                            "Vente Flash",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            "Choose your discount",
+                            style: TextStyle(fontSize: 12, color: Colors.grey),
+                          ),
                         ],
                       ),
                     ),
@@ -92,8 +151,11 @@ class _VenteFlashPageState extends State<VenteFlashPage> {
                       ),
                       child: Row(
                         children: [
-                          const Icon(Icons.timer_outlined,
-                              color: Colors.blue, size: 18),
+                          const Icon(
+                            Icons.timer_outlined,
+                            color: Colors.blue,
+                            size: 18,
+                          ),
                           const SizedBox(width: 6),
                           _timeBox("1"),
                           _separator(),
@@ -108,7 +170,7 @@ class _VenteFlashPageState extends State<VenteFlashPage> {
               ),
             ),
 
-            // ================= FILTERS =================
+            //  FILTERS 
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(16),
@@ -128,7 +190,9 @@ class _VenteFlashPageState extends State<VenteFlashPage> {
                           child: Container(
                             margin: const EdgeInsets.symmetric(horizontal: 6),
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 18, vertical: 8),
+                              horizontal: 18,
+                              vertical: 8,
+                            ),
                             decoration: BoxDecoration(
                               color: selected ? chocolate : Colors.white,
                               borderRadius: BorderRadius.circular(20),
@@ -150,7 +214,7 @@ class _VenteFlashPageState extends State<VenteFlashPage> {
               ),
             ),
 
-            // ================= RADIANT GLOW =================
+            //RADIANT GLOW 
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(16),
@@ -165,9 +229,10 @@ class _VenteFlashPageState extends State<VenteFlashPage> {
                       const Text(
                         "RADIANT GLOW",
                         style: TextStyle(
-                            letterSpacing: 1.5,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
+                          letterSpacing: 1.5,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
                       ),
                       const SizedBox(height: 12),
                       SingleChildScrollView(
@@ -188,15 +253,20 @@ class _VenteFlashPageState extends State<VenteFlashPage> {
               ),
             ),
 
-            // ================= TITLE =================
+            // TITLE 
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text("Réduction de 20%",
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    const Text(
+                      "Réduction de 20%",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     IconButton(
                       icon: const Icon(Icons.arrow_forward),
                       onPressed: () {
@@ -210,7 +280,7 @@ class _VenteFlashPageState extends State<VenteFlashPage> {
 
             const SliverToBoxAdapter(child: SizedBox(height: 16)),
 
-            // ================= GRID PRODUITS =================
+            //  GRID PRODUITS 
             SliverPadding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               sliver: SliverGrid(
@@ -221,15 +291,63 @@ class _VenteFlashPageState extends State<VenteFlashPage> {
                   childAspectRatio: 0.72,
                 ),
                 delegate: SliverChildBuilderDelegate(
-                  childCount: 4,
                   (context, index) {
+                    // Apply filter based on selectedDiscount
+                    final filtered = selectedDiscount == 0
+                        ? products
+                        : products
+                              .where(
+                                (p) =>
+                                    (p['discount'] ?? 0) ==
+                                    int.parse(
+                                      discounts[selectedDiscount].replaceAll(
+                                        '%',
+                                        '',
+                                      ),
+                                    ),
+                              )
+                              .toList();
+
+                    if (filtered.isEmpty) {
+                      return Container(
+                        alignment: Alignment.center,
+                        child: const Text('Aucun produit'),
+                      );
+                    }
+
+                    final product = filtered[index % filtered.length];
                     return GestureDetector(
                       onTap: () {
-                        // Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetailPage()));
+                        Get.toNamed(
+                          Routes.PRODUCT,
+                          arguments: {
+                            'productName': product['name'],
+                            'productPrice': product['price'],
+                            'productImage':
+                                (product['images'] as List).isNotEmpty
+                                ? (product['images'] as List).first
+                                : null,
+                            'productImages': product['images'],
+                          },
+                        );
                       },
-                      child: _productCard(),
+                      child: _productCard(product),
                     );
                   },
+                  childCount: selectedDiscount == 0
+                      ? products.length
+                      : products
+                            .where(
+                              (p) =>
+                                  (p['discount'] ?? 0) ==
+                                  int.parse(
+                                    discounts[selectedDiscount].replaceAll(
+                                      '%',
+                                      '',
+                                    ),
+                                  ),
+                            )
+                            .length,
                 ),
               ),
             ),
@@ -241,8 +359,7 @@ class _VenteFlashPageState extends State<VenteFlashPage> {
     );
   }
 
-  // ================= WIDGETS =================
-
+  // WIDGETS
   Widget _glow(String path, double width) {
     return SizedBox(
       width: width,
@@ -269,7 +386,19 @@ class _VenteFlashPageState extends State<VenteFlashPage> {
     );
   }
 
-  Widget _productCard() {
+  Widget _productCard(Map<String, dynamic> product) {
+    final images = (product['images'] as List).cast<String>();
+    final img = images.isNotEmpty ? images.first : null;
+
+    Widget imgWidget;
+    if (img == null) {
+      imgWidget = Container(color: Colors.grey.shade200);
+    } else if (img.startsWith('http')) {
+      imgWidget = Image.network(img, fit: BoxFit.contain);
+    } else {
+      imgWidget = Image.asset(img, fit: BoxFit.contain);
+    }
+
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
@@ -282,33 +411,47 @@ class _VenteFlashPageState extends State<VenteFlashPage> {
           Expanded(
             child: Stack(
               children: [
-                Container(
-                  decoration: BoxDecoration(
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    width: double.infinity,
+                    height: double.infinity,
                     color: Colors.grey.shade200,
-                    borderRadius: BorderRadius.circular(10),
+                    child: imgWidget,
                   ),
                 ),
                 Positioned(
                   top: 8,
                   right: 8,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 2,
+                    ),
                     decoration: BoxDecoration(
                       color: discountGreen,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: const Text("-20%",
-                        style: TextStyle(color: Colors.white, fontSize: 10)),
+                    child: Text(
+                      product.containsKey('discount')
+                          ? '-${product['discount']}%'
+                          : '',
+                      style: const TextStyle(color: Colors.white, fontSize: 10),
+                    ),
                   ),
                 ),
               ],
             ),
           ),
           const SizedBox(height: 8),
-          const Text("Produit cosmétique",
-              style: TextStyle(fontWeight: FontWeight.w600)),
-          const Text("6 000 FCFA",
-              style: TextStyle(fontWeight: FontWeight.bold)),
+          Text(
+            product['name'] ?? '',
+            style: const TextStyle(fontWeight: FontWeight.w600),
+          ),
+          Text(
+            product['price'] ?? '',
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
         ],
       ),
     );

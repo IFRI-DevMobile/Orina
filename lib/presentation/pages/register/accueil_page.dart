@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'vente_flash_page.dart';
+import 'package:code_initial/presentation/pages/profile/profile_page.dart';
+import 'package:code_initial/wishlist_page.dart';
+import 'package:code_initial/cart_page.dart';
+import 'package:code_initial/search_page.dart';
+import 'package:code_initial/notifications_page.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -17,17 +23,14 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               const SizedBox(height: 10),
 
-              
               // Titre
-              
               Row(
                 children: [
                   const Expanded(
                     child: Text(
-                      'Bonjour, Symelle!',
+                      'Bonjour!',
                       style: TextStyle(
                         fontSize: 26,
                         fontWeight: FontWeight.w700,
@@ -40,7 +43,7 @@ class HomePage extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       // Navigation vers la page recherche
-                      // Navigator.push(context, MaterialPageRoute(builder: (_) => SearchPage()));
+                       Navigator.push(context, MaterialPageRoute(builder: (_) => SearchPage()));
                     },
                     icon: const Icon(Icons.search),
                   ),
@@ -49,25 +52,18 @@ class HomePage extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       // Navigation vers la page notifications
-                      // Navigator.push(context, MaterialPageRoute(builder: (_) => NotificationsPage()));
+                       Navigator.push(context, MaterialPageRoute(builder: (_) => NotificationsPage()));
                     },
                     icon: const Icon(Icons.notifications_none),
                   ),
 
                   // Page paramètres
-                  IconButton(
-                    onPressed: () {
-                      // Navigation vers la page paramètres
-                      // Navigator.push(context, MaterialPageRoute(builder: (_) => SettingsPage()));
-                    },
-                    icon: const Icon(Icons.settings_outlined),
-                  ),
+                  
                 ],
               ),
 
               const SizedBox(height: 15),
 
-             
               // ANNONCE
               Container(
                 width: double.infinity,
@@ -105,7 +101,10 @@ class HomePage extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         // Navigation vers la page vente_flah_page.dart
-                         Navigator.push(context, MaterialPageRoute(builder: (_) => VenteFlashPage()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => VenteFlashPage()),
+                        );
                       },
                       child: Container(
                         width: 38,
@@ -114,7 +113,10 @@ class HomePage extends StatelessWidget {
                           color: chocolate,
                           shape: BoxShape.circle,
                         ),
-                        child: const Icon(Icons.arrow_forward, color: Colors.black),
+                        child: const Icon(
+                          Icons.arrow_forward,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                   ],
@@ -123,9 +125,7 @@ class HomePage extends StatelessWidget {
 
               const SizedBox(height: 25),
 
-             
               // VU RECEMMENT
-              
               const Text(
                 'Vu récemment',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
@@ -155,9 +155,7 @@ class HomePage extends StatelessWidget {
 
               const SizedBox(height: 25),
 
-              
               // Mes commandes
-              
               const Text(
                 'Mes commandes',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
@@ -181,9 +179,7 @@ class HomePage extends StatelessWidget {
 
               const SizedBox(height: 25),
 
-             
               // Histoires
-              
               const Text(
                 'Histoires',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
@@ -213,54 +209,67 @@ class HomePage extends StatelessWidget {
         ),
       ),
 
-      
       //Bar de navigation
-      
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         selectedItemColor: chocolate,
         unselectedItemColor: Colors.grey[600],
         onTap: (index) {
-           //Navigation selon l'index de la barre
-          if(index == 0) {
-            Navigator.push(context, MaterialPageRoute(builder: (_) => HomePage()));
-          } else if(index == 1) {
-          //   Navigator.push(context, MaterialPageRoute(builder: (_) => WishlistPage()));
-          } else if(index == 2) {
-             Navigator.push(context, MaterialPageRoute(builder: (_) => VenteFlashPage()));
-           } else if(index == 3) {
-          //   Navigator.push(context, MaterialPageRoute(builder: (_) => CartPage()));
-           } else if(index == 4) {
-          //   Navigator.push(context, MaterialPageRoute(builder: (_) => AccountPage()));
-           }
+          //Navigation selon l'index de la barre
+          if (index == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => HomePage()),
+            );
+          } else if (index == 1) {
+               Navigator.push(context, MaterialPageRoute(builder: (_) => WishlistPage()));
+          } else if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => VenteFlashPage()),
+            );
+          } else if (index == 3) {
+               Navigator.push(context, MaterialPageRoute(builder: (_) => CartPage()));
+          } else if (index == 4) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const ProfilePage()),
+            );
+          }
         },
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite_border), label: ' Liste de souhaits'),
-          BottomNavigationBarItem(icon: Icon(Icons.local_offer_outlined), label: 'Offres'),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_outlined), label: 'Panier'),
-          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'Compte'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_border),
+            label: ' Liste de souhaits',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.local_offer_outlined),
+            label: 'Offres',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart_outlined),
+            label: 'Panier',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            label: 'Compte',
+          ),
         ],
       ),
     );
   }
 
- // Section "VU RECEMMENT"
-  
+  // Section "VU RECEMMENT"
+
   Widget _circleVideo(String path) {
     return ClipOval(
-      child: Image.asset(
-        path,
-        width: 55,
-        height: 55,
-        fit: BoxFit.cover,
-      ),
+      child: Image.asset(path, width: 55, height: 55, fit: BoxFit.cover),
     );
   }
 
-  
   //  Section "STORY"
-  
+
   Widget _storyVideo(String path, {bool isLive = false}) {
     return AspectRatio(
       aspectRatio: 3 / 4,
@@ -275,13 +284,18 @@ class HomePage extends StatelessWidget {
                 top: 8,
                 left: 8,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 6,
+                    vertical: 2,
+                  ),
                   decoration: BoxDecoration(
                     color: notifGreen,
                     borderRadius: BorderRadius.circular(6),
                   ),
-                  child: const Text("LIVE",
-                      style: TextStyle(color: Colors.white, fontSize: 10)),
+                  child: const Text(
+                    "LIVE",
+                    style: TextStyle(color: Colors.white, fontSize: 10),
+                  ),
                 ),
               ),
             Center(
@@ -300,7 +314,6 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
 
 // Notif verte
 
@@ -336,9 +349,14 @@ class _OrderPill extends StatelessWidget {
             decoration: BoxDecoration(
               color: active ? const Color(0xFFEFF7FB) : Colors.white,
               borderRadius: BorderRadius.circular(24),
-              border: Border.all(color: const Color.fromRGBO(158, 158, 158, 0.25)),
+              border: Border.all(
+                color: const Color.fromRGBO(158, 158, 158, 0.25),
+              ),
             ),
-            child: Text(label, style: const TextStyle(fontWeight: FontWeight.w600)),
+            child: Text(
+              label,
+              style: const TextStyle(fontWeight: FontWeight.w600),
+            ),
           ),
         ),
         if (showDot)

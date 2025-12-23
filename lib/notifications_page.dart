@@ -109,8 +109,7 @@ class NotificationsPage extends StatelessWidget {
           BottomNavigationBarItem(
               icon: Icon(Icons.favorite_border),
               label: "Liste de souhaits"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.local_offer_outlined), label: "Offres"),
+          
           BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart), label: "Panier"),
           BottomNavigationBarItem(

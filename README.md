@@ -103,3 +103,7 @@ flutter pub get
 flutter run
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/Symelle
