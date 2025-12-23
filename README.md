@@ -88,6 +88,8 @@ https://drive.google.com/file/d/1eON2grH2VWFl-Zq9eYd9insyVJYjKCiu/view?usp=drive
 https://drive.google.com/file/d/1kylhUQZaImvKEgH8-GfmTYPMgRxmxSqz/view?usp=drive_link  (lien pour le cahier de charges)
 
 https://www.figma.com/design/MGIyJSY1cipvZoRFLCzrDi/Beauty-Products-E-commerce-App--Community-?node-id=0-1&t=shGhnjiDURqsNqwp-1  (lien figma)
+
+
 ---
 La maquette et le cahier de charges n'ont pas été totalement respecté
 
@@ -100,3 +102,4 @@ La maquette et le cahier de charges n'ont pas été totalement respecté
 ```bash
 flutter pub get
 flutter run
+
