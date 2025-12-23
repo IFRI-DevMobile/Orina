@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'vente_flash_page.dart';
 import 'package:code_initial/presentation/pages/profile/profile_page.dart';
+import 'package:code_initial/wishlist_page.dart';
+import 'package:code_initial/cart_page.dart';
+import 'package:code_initial/search_page.dart';
+import 'package:code_initial/notifications_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -26,7 +30,7 @@ class HomePage extends StatelessWidget {
                 children: [
                   const Expanded(
                     child: Text(
-                      'Bonjour, Symelle!',
+                      'Bonjour!',
                       style: TextStyle(
                         fontSize: 26,
                         fontWeight: FontWeight.w700,
@@ -39,7 +43,7 @@ class HomePage extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       // Navigation vers la page recherche
-                      // Navigator.push(context, MaterialPageRoute(builder: (_) => SearchPage()));
+                       Navigator.push(context, MaterialPageRoute(builder: (_) => SearchPage()));
                     },
                     icon: const Icon(Icons.search),
                   ),
@@ -48,19 +52,13 @@ class HomePage extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       // Navigation vers la page notifications
-                      // Navigator.push(context, MaterialPageRoute(builder: (_) => NotificationsPage()));
+                       Navigator.push(context, MaterialPageRoute(builder: (_) => NotificationsPage()));
                     },
                     icon: const Icon(Icons.notifications_none),
                   ),
 
                   // Page paramètres
-                  IconButton(
-                    onPressed: () {
-                      // Navigation vers la page paramètres
-                      // Navigator.push(context, MaterialPageRoute(builder: (_) => SettingsPage()));
-                    },
-                    icon: const Icon(Icons.settings_outlined),
-                  ),
+                  
                 ],
               ),
 
@@ -224,14 +222,14 @@ class HomePage extends StatelessWidget {
               MaterialPageRoute(builder: (_) => HomePage()),
             );
           } else if (index == 1) {
-            //   Navigator.push(context, MaterialPageRoute(builder: (_) => WishlistPage()));
+               Navigator.push(context, MaterialPageRoute(builder: (_) => WishlistPage()));
           } else if (index == 2) {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => VenteFlashPage()),
             );
           } else if (index == 3) {
-            //   Navigator.push(context, MaterialPageRoute(builder: (_) => CartPage()));
+               Navigator.push(context, MaterialPageRoute(builder: (_) => CartPage()));
           } else if (index == 4) {
             Navigator.push(
               context,
