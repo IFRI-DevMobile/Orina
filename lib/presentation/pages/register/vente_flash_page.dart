@@ -120,7 +120,7 @@ class _VenteFlashPageState extends State<VenteFlashPage> {
                     IconButton(
                       icon: const Icon(Icons.arrow_back),
                       onPressed: () {
-                        // Navigator.pop(context);
+                         Navigator.pop(context);
                       },
                     ),
                     Expanded(

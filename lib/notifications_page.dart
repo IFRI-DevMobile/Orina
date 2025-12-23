@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:code_initial/presentation/pages/register/accueil_page.dart';
 
 class NotificationsPage extends StatelessWidget {
   const NotificationsPage({super.key});
@@ -15,7 +16,15 @@ class NotificationsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: const Icon(Icons.arrow_back, color: Colors.black),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => HomePage()),
+              );
+            },
+          ),
         title: Text(
           "Notifications",
           style: TextStyle(
