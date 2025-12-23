@@ -83,7 +83,7 @@ Le projet est réalisé dans un cadre collaboratif, chaque membre de l’équipe
 ---
 
 ##  Liens drive pour la vidéo, cahier de charge et lien Figma du projet
-https://drive.google.com/file/d/1eON2grH2VWFl-Zq9eYd9insyVJYjKCiu/view?usp=drive_link  (lien pour la vidéo)
+https://drive.google.com/file/d/1bXSUKRZs1mDg58W09B3lurwCvoI36VAm/view?usp=sharing  (lien pour la vidéo)
 
 https://www.figma.com/proto/MGIyJSY1cipvZoRFLCzrDi/Beauty-Products-E-commerce-App--Community-?node-id=0-1&t=gprPufN9mK3hS2gX-1  ( lien Figma)
 
